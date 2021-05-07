@@ -1,8 +1,8 @@
 from fastapi import FastAPI
-from app.db.database import engine, database, metadata
+from app.db.database import database
 from app.api.api import api_rounter
 
-metadata.create_all(engine)
+# metadata.create_all(engine)
 app = FastAPI(
     title="practice"
 )
@@ -17,7 +17,8 @@ async def shutdown():
 
 app.include_router(api_rounter)
 
-
+# if __name__ == "__main__":
+#     uvicorn.run(app, host="0.0.0.0", port=8000)
 
 # from typing import Optional
 # from pydantic import BaseModel

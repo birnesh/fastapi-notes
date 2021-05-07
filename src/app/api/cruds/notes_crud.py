@@ -1,5 +1,6 @@
 from ..schemas.note_schemas import NoteSchema
-from app.db.database import notes, database
+from app.db.models import notes
+from app.db.database import database
 
 async def post(payload: NoteSchema):
     query = notes.insert().values(title=payload.title,description=payload.description)
