@@ -5,8 +5,20 @@ from sqlalchemy import (
     Integer, 
     String, 
     DateTime, 
+    Boolean
 )
 from sqlalchemy.sql import func
+
+users = Table(
+    "users",
+    metadata,
+    Column("id", Integer, primary_key=True),
+    Column("email", String(320), unique=True),
+    Column("password", String(127)),
+    Column("first_name", String(50),nullable=True),
+    Column("last_name", String(50),nullable=True),
+    Column("is_super_user", Boolean, default=False )
+)
 
 notes = Table(
     "notes",
