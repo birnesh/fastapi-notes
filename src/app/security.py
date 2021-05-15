@@ -34,17 +34,3 @@ def verify_password(plain_password: str, hashed_password: str) -> bool:
 def get_password_hash(password: str) -> str:
     return pwd_context.hash(password)
 
-# in order to avoid circular import 
-from app.api.cruds import users_crud
-
-async def get_current_user(token: str = Depends(oauth2_scheme)):
-    credentials_exception = HTTPException(
-        status_code=status.HTTP_401_UNAUTHORIZED,
-        detail="Could not validate credentials",
-        headers={"WWW-Authenticate": "Bearer"},
-    )
-    user_id = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-    user = await users_crud.get(user_id["id"])
-    if not user:
-        raise credentials_exception
-    return user

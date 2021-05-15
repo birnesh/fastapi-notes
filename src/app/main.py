@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from app.db.database import database
-from app.api.api import api_rounter
+from app.routers import api_rounter
 
 # metadata.create_all(engine)
 app = FastAPI(

@@ -1,7 +1,7 @@
 import json
 import pytest
 
-from app.api.cruds import notes_crud
+from app.cruds import notes_crud
 
 # notes post
 def test_create_notes(test_app, monkeypatch):

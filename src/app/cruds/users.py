@@ -1,5 +1,5 @@
 from pydantic.networks import EmailStr
-from ..schemas.user_schemas import UserPost
+from app.schemas.users import UserPost
 from app.db.models import users
 from app.db.database import database
 from app.security import get_password_hash, verify_password

@@ -1,11 +1,10 @@
 from datetime import timedelta
 from typing import Any
 
-from fastapi import APIRouter, Body, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException
 from fastapi.security import OAuth2PasswordRequestForm
-from sqlalchemy.orm import Session
-from ..schemas.login_schemas import Token, TokenData
-from ..cruds import users_crud
+from app.schemas.login import Token
+from app import cruds
 from app import security
 
 router = APIRouter()
@@ -17,7 +16,7 @@ async def login_access_token(form_data: OAuth2PasswordRequestForm = Depends()
     """
     OAuth2 compatible token login, get an access token for future requests
     """
-    user = await users_crud.authenticate(
+    user = await cruds.users.authenticate(
         email=form_data.username, password=form_data.password
     )
     if not user:

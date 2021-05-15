@@ -2,8 +2,8 @@ from typing import List
 from fastapi import APIRouter, HTTPException
 from starlette import responses
 
-from ..cruds import users_crud
-from ..schemas.user_schemas import UserSchema, UserDB, UserPost
+from app.cruds import users as users_crud
+from app.schemas.users import UserSchema, UserDB, UserPost
 router = APIRouter()
 
 @router.post("/", response_model=UserDB, status_code=201)

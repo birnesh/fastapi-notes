@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from .endpoints import notes, users, login
+from . import notes, users, login
 
 api_rounter = APIRouter()
 api_rounter.include_router(login.router, tags=['login'])
